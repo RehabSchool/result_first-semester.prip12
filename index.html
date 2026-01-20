@@ -227,11 +227,10 @@ td.grade {
   }
   table th,
 table td {
-  font-size: 16px; /* الحجم الطبيعي */
+  font-size: 16px; 
   padding: 8px;
 }
 
-/* 📱 موبايل */
 @media (max-width: 768px) {
   table th,
   table td {
@@ -240,7 +239,7 @@ table td {
   }
 }
 
-/* 📱 موبايلات صغيرة جدًا */
+
 @media (max-width: 480px) {
   table th,
   table td {
@@ -384,7 +383,7 @@ for (let i = headers.length - 1; i >= 0; i--) {
 
   const headerClean = header.replace(/\s+/g,'');
 
-  // تجاهل الأعمدة غير المرغوب فيها
+ 
   if (
     headerClean.includes('أرقامالجلوس') || 
     headerClean.includes('السري') ||
@@ -393,20 +392,18 @@ for (let i = headers.length - 1; i >= 0; i--) {
     headerClean.includes('إســـــمالطــــالب') 
   ) continue;
 
-  // بداية المواد غير مضافة
   if (headerClean.includes('الموادغيراضافيه')) { 
     inExtra = true; 
     continue; 
   }
 
-  // نتخطى عمود "مجموع"
   if (headerClean === 'مجموع') continue;
 
-  // لو العمود اسم مادة
+ 
   if (!/(تحريرى|تحريري|تقويم|إنجاز|انجاز)/i.test(headerClean)) {
     const subject = header;
-    const exam = Number(row[i+1]) || 0; // التحريري غالبًا العمود بعد الاسم
-    const work = Number(row[i+2]) || 0; // أعمال السنة العمود بعده
+    const exam = Number(row[i+1]) || 0; 
+    const work = Number(row[i+2]) || 0; 
     const total = exam + work;
 
     if (!inExtra) subjectsMap[subject] = { exam, work, total };
@@ -505,3 +502,4 @@ loadSheet();
 </script>
 </body>
 </html>
+
