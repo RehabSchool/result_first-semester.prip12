@@ -1,0 +1,507 @@
+<!doctype html>
+<html lang="ar">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>نتيجة مدرسة الرحاب الخاصة</title>
+<style>
+body {
+  font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+  direction: rtl;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(135deg, #cce0f0, #f5f7fb);
+}
+
+.container {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+}
+
+.card {
+  background: white;
+  border-radius: 25px;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+  padding: 40px 30px 30px 30px;
+  position: relative;
+}
+
+.page-title {
+  text-align: center;
+  font-size: 28px;
+  color: #13245C;
+  margin-bottom: 30px;
+  font-weight: 700;
+}
+
+.logo-container {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 3px solid #13245C;
+  position: absolute;
+  top: -40px;
+  left: 30px;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  overflow: hidden;
+}
+
+.logo-container img {
+  width: 65px;
+  height: 65px;
+  object-fit: contain;
+}
+
+.controls {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+
+.input-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+label.small {
+  font-size: 16px;
+  color: #555;
+  white-space: nowrap;
+  flex-shrink: 0;
+  margin-right: -200px;
+}
+
+input[type="text"] {
+  width: 300px;
+  padding: 12px;
+  font-size: 16px;
+  border-radius: 12px;
+  border: 1px solid #b0c7d8;
+}
+
+input[type="text"]:focus {
+  outline: none;
+  border-color: #0b79a6;
+  box-shadow: 0 0 10px rgba(11,121,166,0.25);
+}
+
+button {
+  width: 320px;
+  padding: 15px;
+  font-size: 16px;
+  border-radius: 12px;
+  border: none;
+  background: #13245C;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  background: #095b7c;
+  transform: translateY(-2px);
+}
+
+.result {
+  margin-top: 25px;
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 18px;
+  margin-top: 15px;
+}
+
+th, td {
+  padding: 12px 16px;
+  border: 1px solid #e6eef5;
+  text-align: center;
+}
+
+th {
+  background: #13245C;
+  color: white;
+  font-weight: 700;
+  font-size: 20px;
+}
+
+tbody tr:nth-child(even) {
+  background: #f0f9fc;
+}
+
+tbody tr:hover {
+  background: #d6edf8;
+  transition: background 0.2s;
+}
+
+td.grade {
+  font-weight: 700;
+  font-size: 20px;
+}
+
+.error {
+  color: #b00020;
+  font-weight: 700;
+  text-align: center;
+  margin-top: 12px;
+}
+
+@media(max-width:580px){
+
+  .basic-info-table th {
+    display: none;
+  }
+ .input-row {
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+  }
+
+  label.small,
+  input[type="text"],
+  button {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-right: 0 !important;
+    text-align: center;
+  }
+
+  label.small {
+    margin-right: 0 !important; 
+    font-size: 16px;
+  }
+
+  input[type="text"] {
+    width: 100% !important;
+  }
+
+.basic-info-table,
+  .basic-info-table tbody,
+  .basic-info-table tr,
+  .basic-info-table td {
+    display: block;
+ 
+  }
+
+  .basic-info-table td {
+    position: relative;
+    padding: 14px 120px 14px 12px; 
+    margin-bottom: 10px;
+    background: #d6edf8;
+    font-size: 15px;
+    font-weight: 600;
+    border-radius: 6px;
+    border: 1px solid #e6eef5;
+    text-align: center;
+    direction: rtl;    
+  }
+
+  .basic-info-table td::before {
+    content: attr(data-label);
+    position: absolute;
+    right: 0;              
+    top: 0;
+    height: 100%;
+    width: 110px;
+    background:#13245C ;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    border-radius: 6px 0 0 6px;
+    border-left: 1px solid #e6eef5;
+  }
+  table th,
+table td {
+  font-size: 16px; /* الحجم الطبيعي */
+  padding: 8px;
+}
+
+/* 📱 موبايل */
+@media (max-width: 768px) {
+  table th,
+  table td {
+    font-size: 12px;
+    padding: 4px;
+  }
+}
+
+/* 📱 موبايلات صغيرة جدًا */
+@media (max-width: 480px) {
+  table th,
+  table td {
+    font-size: 10px;
+    padding: 3px;
+  }
+}
+
+}
+
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="card">
+    <h1 class="page-title">نتيجة طلاب مدرسة الرحاب الخاصة</h1>
+    <div class="logo-container">
+      <img src="./img/logo.jpeg" alt="لوغو مدرسة الرحاب">
+    </div>
+
+    <div class="controls">
+      <div class="input-row">
+        <label for="nid" class="small">اكتب الرقم القومي للطالب:</label>
+        <input id="nid" type="text" placeholder=" " inputmode="numeric" />
+      </div>
+      <button id="searchBtn">عرض النتيجة</button>
+    </div>
+
+    <div id="result" class="result" aria-live="polite"></div>
+  </div>
+</div>
+
+<script>
+const SHEET_CSV = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSrCOlw_TeRLV3vWMzQk7Rmq-u_-FpNiIvJsypAxpkXt52ibys2WatwZkJNfoogOQ/pub?gid=1966355717&single=true&output=csv';
+const resultEl = document.getElementById('result');
+const searchBtn = document.getElementById('searchBtn');
+const nidInput = document.getElementById('nid');
+
+let headers=[], rows=[], indexByHeader={}, lookupByNid={};
+
+function cleanCell(s){ 
+  if(!s && s!==0) return ''; 
+  s=String(s).trim(); 
+  if(s.length>=2 && s[0]==='"' && s[s.length-1]==='"'){ 
+    s=s.slice(1,-1).replace(/""/g,'"'); 
+  } 
+  return s; 
+}
+
+function parseCSV(text){ 
+  const lines=text.split(/\r?\n/).filter(l=>l.trim()!==''); 
+  return lines.map(line=>{ 
+    const result=[]; 
+    let cur='', inQuotes=false; 
+    for(let i=0;i<line.length;i++){ 
+      const ch=line[i]; 
+      if(ch==='\"'&&line[i+1]==='\"'){ cur+='"'; i++; continue;} 
+      if(ch==='\"'){inQuotes=!inQuotes; continue;} 
+      if(ch===','&&!inQuotes){result.push(cur); cur=''; continue;} 
+      cur+=ch; 
+    }
+    result.push(cur); 
+    return result.map(cleanCell); 
+  }); 
+}
+
+async function loadSheet(){
+  try{
+    const resp=await fetch(SHEET_CSV);
+    if(!resp.ok) throw new Error('فشل في جلب الشيت');
+    const text=await resp.text();
+    const parsed=parseCSV(text);
+    if(parsed.length<1) throw new Error('الشيت فارغ أو لم يتم التعرف عليه');
+
+    headers=parsed[0].map(h=>h.replace(/\u200E|\u200F/g,'').trim());
+    rows=parsed.slice(1);
+
+    indexByHeader={};
+    headers.forEach((h,i)=>indexByHeader[h]=i);
+
+    const nidColumnName='الرقم القومى';
+    const nidIndex=indexByHeader[nidColumnName]!==undefined?indexByHeader[nidColumnName]:0;
+
+    lookupByNid={};
+    rows.forEach(r=>{ 
+      const nid=(r[nidIndex]||'').replace(/\s+/g,'').trim(); 
+      if(nid) lookupByNid[nid]=r; 
+    });
+  }catch(err){ 
+    console.error(err); 
+    resultEl.innerHTML=`<div class="error">خطأ: ${err.message}</div>`; 
+  }
+}
+
+function showResultRow(row){
+  if(!row){ 
+    resultEl.innerHTML='<div class="error">لم يتم العثور على الطالب بالرقم المدخل.</div>'; 
+    return; 
+  }
+
+  const basicFields = ['إســـــم الطــــالب', 'الرقم القومى','الفصل', 'رقم الجلوس','الامتحان' ];
+  let basicTable = '<table class="basic-info-table"><tbody><tr>';
+  basicFields.forEach(h=>{
+    if(indexByHeader[h] !== undefined){
+      basicTable += `<th>${h}</th>`;
+    }
+  });
+  basicTable += '</tr><tr>';
+ basicFields.forEach(h=>{
+  if(indexByHeader[h] !== undefined){
+    const value = row[indexByHeader[h]] || '';
+    basicTable += `<td data-label="${h}">${value}</td>`;
+  }
+});
+
+  basicTable += '</tr></tbody></table>';
+
+  // let tableHtml = '<table><thead><tr><th>المادة</th><th>درجة الطالب</th></tr></thead><tbody>';
+   // جدول أول للمواد الأساسية
+let tableHtml = `
+  <table dir="rtl" style="text-align:right;">
+    <thead>
+      <tr>
+        <th>المادة</th>
+        <th>درجة التقويم (70)</th>
+        <th>درجة التحريري (30)</th>
+        <th>المجموع (100)</th>
+      </tr>
+    </thead>
+    <tbody>
+`;
+
+const subjectsMap = {};
+let extraSubjects = {};
+let inExtra = false;
+
+// نقرأ الأعمدة من آخر إلى أول
+for (let i = headers.length - 1; i >= 0; i--) {
+  let header = headers[i].trim();
+  if (!header) continue;
+
+  const headerClean = header.replace(/\s+/g,'');
+
+  // تجاهل الأعمدة غير المرغوب فيها
+  if (
+    headerClean.includes('أرقامالجلوس') || 
+    headerClean.includes('السري') ||
+    headerClean.includes('الفصل') || 
+    headerClean.includes('الرقمالقومى') || 
+    headerClean.includes('إســـــمالطــــالب') 
+  ) continue;
+
+  // بداية المواد غير مضافة
+  if (headerClean.includes('الموادغيراضافيه')) { 
+    inExtra = true; 
+    continue; 
+  }
+
+  // نتخطى عمود "مجموع"
+  if (headerClean === 'مجموع') continue;
+
+  // لو العمود اسم مادة
+  if (!/(تحريرى|تحريري|تقويم|إنجاز|انجاز)/i.test(headerClean)) {
+    const subject = header;
+    const exam = Number(row[i+1]) || 0; // التحريري غالبًا العمود بعد الاسم
+    const work = Number(row[i+2]) || 0; // أعمال السنة العمود بعده
+    const total = exam + work;
+
+    if (!inExtra) subjectsMap[subject] = { exam, work, total };
+    else extraSubjects[subject] = { exam, work, total };
+  }
+}
+
+// --- جدول المواد الأساسية ---
+let finalTotal = 0;
+Object.keys(subjectsMap).forEach(subject => {
+  const s = subjectsMap[subject];
+  finalTotal += s.total;
+
+  tableHtml += `
+    <tr>
+      <td>${subject}</td>
+      <td class="grade">${s.exam}</td>
+      <td class="grade">${s.work}</td>
+      <td class="grade">${s.total}</td>
+    </tr>
+  `;
+});
+
+tableHtml += `
+  <tr style="background:#13245C;color:#fff;font-weight:bold;font-size:20px;">
+    <td colspan="3">المجموع النهائي</td>
+    <td>${finalTotal}</td>
+  </tr>
+</tbody>
+</table>
+`;
+
+// --- جدول المواد الإضافية ---
+let extraHtml = '';
+if (Object.keys(extraSubjects).length > 0) {
+  extraHtml = `
+    <h3 style="margin-top:20px;text-align:center;color:#13245C">
+      المواد الغير مضافة للمجموع
+    </h3>
+    <table dir="rtl" style="text-align:right;">
+      <thead>
+        <tr>
+          <th>المادة</th>
+          <th>درجة التقويم (70)</th>
+        <th>درجة التحريري (30)</th>
+          <th>المجموع (100)</th>
+        </tr>
+      </thead>
+      <tbody>
+  `;
+
+  Object.keys(extraSubjects).forEach(subject => {
+    const s = extraSubjects[subject];
+    extraHtml += `
+      <tr>
+        <td>${subject}</td>
+        <td class="grade">${s.exam}</td>
+        <td class="grade">${s.work}</td>
+        <td class="grade">${s.total}</td>
+      </tr>
+    `;
+  });
+
+  extraHtml += `</tbody></table>`;
+}
+
+// عرض النتيجة
+resultEl.innerHTML = basicTable + tableHtml + extraHtml;
+
+
+}
+
+
+searchBtn.addEventListener('click', async () => {
+  const nid = (nidInput.value || '').replace(/\s+/g,'').trim();
+  if(!nid){ 
+    resultEl.innerHTML = '<div class="error">من فضلك ادخل الرقم القومي.</div>'; 
+    return; 
+  }
+  await loadSheet();
+  const row = lookupByNid[nid];
+  showResultRow(row);
+});
+
+
+nidInput.addEventListener('keydown',(e)=>{ 
+  if(e.key==='Enter') searchBtn.click(); 
+});
+
+function convertArabicNumbersToEnglish(str) {
+  const arabicNums = '٠١٢٣٤٥٦٧٨٩';
+  return str.replace(/[٠-٩]/g, d => arabicNums.indexOf(d));
+}
+
+loadSheet();
+</script>
+</body>
+</html>
